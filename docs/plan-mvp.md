@@ -67,6 +67,37 @@ Los conceptos se aprenden **justo a tiempo**: cuando una historia usa algo nuevo
 
 Regla: se consulta al responsable antes de iniciar cada fase y cada tarea.
 
+### Auditoría de cada PR (3 capas)
+
+| Capa                | Quién audita                                       | Qué revisa                                                                                   | Cuándo                       |
+| ------------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------- | ---------------------------- |
+| 1. Automática       | CI de GitHub, sin IA                               | Compilación, lint, pruebas, CodeQL, Dependabot y escaneo de secretos                         | Cada PR                      |
+| 2. IA independiente | Revisor de IA separado del que escribió (4 lentes) | Riesgo/seguridad, confiabilidad, legibilidad y resiliencia                                   | PR de riesgo medio o alto    |
+| 3. Responsable      | Responsable                                        | Las 3 preguntas de aprobación                                                                | Cada PR                      |
+
+Para lo crítico (ingreso y aislamiento entre tiendas con RLS) se suma una revisión doble a ciegas.
+
+**Las 3 preguntas de aprobación:**
+
+1. ¿Hace lo que pidió la historia? (criterios *Given/When/Then*)
+2. ¿Puedo explicar por dónde viajan los datos?
+3. ¿Las capas 1 y 2 están en verde, sin hallazgos bloqueantes?
+
+### Resumen de revisión y guía de prueba (cada PR)
+
+Claude acompaña cada PR con:
+
+| Sección              | Contenido                                                                                       |
+| -------------------- | ----------------------------------------------------------------------------------------------- |
+| Lo importante        | Dónde enfocar la revisión                                                                       |
+| Qué es nuevo         | Novedades respecto de lo ya aprobado                                                            |
+| Resumen de todo      | Cada archivo con su propósito                                                                   |
+| Verificación propia  | Comprobaciones reales ejecutadas, con su evidencia                                              |
+| **Cómo probarlo**    | Pasos para que el responsable compruebe que funciona: qué ejecutar, qué predecir y qué resultado esperar |
+| Sugerencias          | Mejoras y si hace falta otra revisión                                                          |
+
+El responsable puede pedir más explicaciones o pruebas antes de aprobar; ningún PR se aprueba con dudas abiertas.
+
 ## 4. Requisitos de testeabilidad (desde el inicio)
 
 El MVP se construye para que el ciclo QA del Mes 2 sea posible:
@@ -85,7 +116,7 @@ El MVP se construye para que el ciclo QA del Mes 2 sea posible:
 
 | Fin de semana | Fase                                      | Contenido                                                                          | Demo                                           |
 | ------------- | ----------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------- |
-| 1             | A — Arquitectura + B — Fundaciones        | A2 stack, A3 repositorio, A4 multi-tenant, A5 modelo de datos, A6 contrato API, A7 pruebas. Monorepo, BD, API, web, app y CI mínimos | Web y app muestran "API en línea"   |
+| 1             | A — Arquitectura + B — Fundaciones        | A3 repositorio, A4 multi-tenant, A5 modelo de datos, A6 contrato API, A7 pruebas. Monorepo, BD, API, web, app y CI mínimos | Web y app muestran "API en línea"   |
 | 2             | 1 — Acceso y marca · 2 — Garantías         | HU-18, HU-35 · HU-01                                                               | Dos tiendas con su marca; registrar una garantía |
 | 3             | 3 — Servicio técnico                      | HU-07, HU-02, HU-03, HU-05, HU-06                                                  | Garantía: registro → diagnóstico → finalizada  |
 | 4             | 4 — Portal del cliente (app + web)        | HU-16, HU-31, QR                                                                    | **MVP completo en local**                      |
