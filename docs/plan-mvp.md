@@ -14,7 +14,7 @@ Plan para construir desde cero un MVP de Garanet en web y aplicación móvil, en
 | Prioridad 1 | Construir bien el MVP web + app y **entender cómo viajan los datos** entre frontend, API, backend y base de datos |
 | Prioridad 2 | Ciclo QA completo: pruebas automatizadas (web, API, móvil), rendimiento, seguridad y su CI                    |
 | Para qué    | Dar mantenimiento y soporte a los bugs que reporte el ciclo QA, y usar la IA con criterio para las funcionalidades futuras |
-| Horizonte   | 2 meses, solo fines de semana (≈ 80 h). Mes 1: MVP. Mes 2: ciclo QA                                           |
+| Horizonte   | 2 meses, solo fines de semana (≈ 80 h). fines de semana 1–5: MVP; 6–8: ciclo QA                                           |
 | Datos       | Solo sintéticos                                                                                               |
 | Costo       | $0                                                                                                            |
 
@@ -22,9 +22,11 @@ Plan para construir desde cero un MVP de Garanet en web y aplicación móvil, en
 
 | Canal                   | Rol             | Historias                                                                                                                              |
 | ----------------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Web (backoffice)        | Personal tienda | HU-18 ingreso · HU-01 registrar garantía (cliente, producto y factura en el mismo formulario) · HU-07 · HU-02 · HU-03 · HU-05 · HU-06 |
-| App (Expo) + portal web | Cliente final   | HU-16 consultar mi garantía (código o QR) · HU-31 fecha de vencimiento                                                                |
+| Web + App (Expo)        | Personal tienda | HU-18 ingreso · HU-01 registrar garantía (cliente, producto y factura en el mismo formulario) · HU-07 · HU-02 · HU-03 · HU-05 · HU-06 |
+| Web + App (Expo)        | Cliente final   | HU-16 consultar mi garantía (código o QR) · HU-31 fecha de vencimiento                                                                |
 | Transversal             | —               | HU-35 versión mínima: logo y colores por tienda (tenant) · web adaptativa en computador, tableta y celular (sección 5)                 |
+
+**Paridad completa:** cada historia se entrega en web y app a la vez, con las mismas funcionalidades por rol, íconos, nombres y orden.
 
 **Fuera del MVP:** HU-09, HU-12 y HU-13 (los reemplaza el seed sintético), reportes, notificaciones por correo y trazabilidad. Cualquier funcionalidad nueva entra después del MVP.
 
@@ -34,7 +36,7 @@ Plan para construir desde cero un MVP de Garanet en web y aplicación móvil, en
 | --------------- | ----------------------------------------------------------------------------------- | ------------------------------------------- |
 | Product Owner   | Elige la historia de Jira y aprueba sus criterios *Given/When/Then*                 | Propone los criterios                       |
 | Tech Lead / Dev | Aprueba el plan, revisa el PR y hace el ejercicio **"seguí la petición"**           | Implementa y explica cada pieza brevemente  |
-| QA              | Plan de pruebas y automatización (Mes 2)                                            | Guía y revisa las pruebas                   |
+| QA              | Plan de pruebas y automatización (etapa QA)                                            | Guía y revisa las pruebas                   |
 | DevOps          | Aprueba y entiende el pipeline de CI                                                | Lo arma y lo explica                        |
 
 ### Ciclo de cada historia
@@ -60,7 +62,7 @@ Botón (web/app) → DevTools / Network: método, URL y JSON
 | - | -------------------------- | -------------------------------------------------------------------------------------------- |
 | 1 | Explicarlo sin mirar       | Cada historia cierra con una explicación propia en `aprendizajes.md`                         |
 | 2 | Predecir antes de ejecutar | Antes de probar, se anticipa el resultado (código de estado, fila guardada, pantalla)        |
-| 3 | Bugs reales (Mes 2)        | Cada bug del ciclo QA se diagnostica con "seguí la petición" antes de pedir el arreglo a la IA |
+| 3 | Bugs reales (etapa QA)        | Cada bug del ciclo QA se diagnostica con "seguí la petición" antes de pedir el arreglo a la IA |
 | 4 | Regla de oro               | Ningún PR entra si el responsable no puede explicar qué hace y por dónde viajan los datos   |
 
 Los conceptos se aprenden **justo a tiempo**: cuando una historia usa algo nuevo, Claude explica el concepto e indica qué investigar.
@@ -100,7 +102,7 @@ El responsable puede pedir más explicaciones o pruebas antes de aprobar; ningú
 
 ## 4. Requisitos de testeabilidad (desde el inicio)
 
-El MVP se construye para que el ciclo QA del Mes 2 sea posible:
+El MVP se construye para que el ciclo QA sea posible:
 
 | Requisito                                            | Para qué                                       |
 | ---------------------------------------------------- | ---------------------------------------------- |
@@ -138,35 +140,37 @@ Reglas táctiles en tableta y celular:
 - Las tablas se convierten en tarjetas por debajo de 560 px de ancho disponible.
 - La acción principal de cada formulario queda fija abajo y a todo el ancho, por encima del TabBar.
 
-Cada historia del MVP se considera terminada solo si funciona en los tres tamaños. En el Mes 2, las pruebas E2E web se ejecutan en los tres anchos.
+Cada historia del MVP se considera terminada solo si funciona en los tres tamaños. En la etapa QA, las pruebas E2E web se ejecutan en los tres anchos.
 
 **Ajustes al alcance del MVP:**
 
 - Los bocetos cubren las 36 historias; en el MVP solo se construyen las pantallas de las historias de la sección 2.
-- En la app, el MVP implementa el rol de cliente final (HU-16, HU-31). Las pantallas de la app para el personal de la tienda quedan para después del MVP.
+- La app implementa todos los roles del MVP (personal de la tienda y cliente final), igual que la web.
 - Los componentes del sistema de diseño son React para web; en la app se recrean con React Native manteniendo colores, tipografía, íconos y nombres (regla de paridad).
 
 ## 6. Plan por fin de semana
 
-### Mes 1 — Construir el MVP y entender el flujo de datos
+### Fines de semana 1–5 — Construir el MVP (web + app) y entender el flujo de datos
 
 | Fin de semana | Fase                                      | Contenido                                                                          | Demo                                           |
 | ------------- | ----------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------- |
 | 1             | A — Arquitectura + B — Fundaciones        | A3 repositorio, A4 multi-tenant, A5 modelo de datos, A6 contrato API, A7 pruebas. Monorepo, BD, API, web, app y CI mínimos, con colores y tipografía del sistema de diseño | Web y app muestran "API en línea"   |
-| 2             | 1 — Acceso y marca · 2 — Garantías         | HU-18, HU-35 · HU-01                                                               | Dos tiendas con su marca; registrar una garantía |
-| 3             | 3 — Servicio técnico                      | HU-07, HU-02, HU-03, HU-05, HU-06                                                  | Garantía: registro → diagnóstico → finalizada  |
-| 4             | 4 — Portal del cliente (app + web)        | HU-16, HU-31, QR                                                                    | **MVP completo en local**                      |
+| 2             | 1 — Acceso y marca (web + app)            | HU-18, HU-35                                                                       | Dos tiendas ingresan con su marca en web y app |
+| 3             | 2 — Garantías (web + app)                 | HU-01                                                                              | Registrar una garantía desde web y desde app   |
+| 4             | 3 — Servicio técnico (web + app)          | HU-07, HU-02, HU-03, HU-05, HU-06                                                  | Garantía: registro → diagnóstico → finalizada  |
+| 5             | 4 — Portal del cliente (web + app)        | HU-16, HU-31, QR                                                                    | **MVP completo en local**                      |
 
 Estado de la Fase A: A1 cerrada → [ADR-001](adr/ADR-001-estilo-de-arquitectura.md) · A2 cerrada → [ADR-002](adr/ADR-002-stack.md) · repositorio `garanet-mvp` creado (público, `main` protegida).
 
-### Mes 2 — Ciclo QA (prioridad 2)
+### Fines de semana 6–8 — Ciclo QA (prioridad 2)
 
 | Fin de semana | Foco                                                        | Herramienta (se confirma en A7)       |
 | ------------- | ----------------------------------------------------------- | ------------------------------------- |
-| 5             | Despliegue a $0 · plan de pruebas · E2E web                  | Playwright                            |
-| 6             | Pruebas de API · pruebas móviles                            | Playwright (API) · Maestro            |
-| 7             | Rendimiento · seguridad                                     | k6 · OWASP ZAP + auditoría de dependencias |
-| 8             | Todo integrado en el CI · ciclo de bugs (reporte → diagnóstico → arreglo con IA → regresión) | GitHub Actions |
+| 6             | Despliegue a $0 · plan de pruebas · E2E web (3 anchos)      | Playwright                            |
+| 7             | Pruebas de API · pruebas móviles                            | Playwright (API) · Maestro            |
+| 8             | Rendimiento · seguridad · todo integrado en el CI · ciclo de bugs | k6 · OWASP ZAP · GitHub Actions |
+
+El fin de semana 8 es el más cargado: si no alcanza, el ciclo de bugs continúa después de los 2 meses.
 
 ### Después del MVP
 
