@@ -110,13 +110,31 @@ El MVP se construye para que el ciclo QA del Mes 2 sea posible:
 | Datos sintéticos de volumen                          | Pruebas de rendimiento                         |
 | Entorno de pruebas separado de la demo               | Probar sin romper la demo                      |
 
-## 5. Plan por fin de semana
+## 5. Diseño existente que se reutiliza
+
+El diseño se aprobó antes del reinicio del proyecto y sigue vigente. No se rediseña: la Fase B parte de estos colores, tipografía y componentes, y cada pantalla del MVP sigue su boceto.
+
+| Elemento                     | Contenido                                                                                              | Enlace                                                        |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- |
+| Identidad y logo             | Logo D2 "Sello verificado": ultramarino `#4b2fe0` + check ámbar `#ffb224`; logotipo en Sora 700        | [Logo](https://claude.ai/artifact/728AprA9VqkW34ds7p3nra)     |
+| Sistema de diseño            | Colores, tipografía y 12 componentes React (incluye tablas apiladas en móvil, TabBar y NavRail)        | [Sistema de diseño](https://claude.ai/artifact/C6pguYfSiwpu8R4P9Hzvnd) |
+| Flujos                       | Flujos de usuario derivados solo de las historias                                                      | [Flujos](https://claude.ai/artifact/Kx4J6ZL9QminTGQ7R7pjJz)   |
+| Bocetos (wireframes)         | Pantallas web y app con paridad de navegación, íconos, nombres y orden                                 | [Bocetos](https://claude.ai/artifact/NxSF2tSaYKQGMiufLmYtCi)  |
+| Prototipo navegable          | Recorrido clicable construido con el sistema de diseño                                                 | [Prototipo](https://claude.ai/artifact/GcCJ6ff7o7MvetKqfPP4Jw) |
+
+**Ajustes al alcance del MVP:**
+
+- Los bocetos cubren las 36 historias; en el MVP solo se construyen las pantallas de las historias de la sección 2.
+- En la app, el MVP implementa el rol de cliente final (HU-16, HU-31). Las pantallas de la app para el personal de la tienda quedan para después del MVP.
+- Los componentes del sistema de diseño son React para web; en la app se recrean con React Native manteniendo colores, tipografía, íconos y nombres (regla de paridad).
+
+## 6. Plan por fin de semana
 
 ### Mes 1 — Construir el MVP y entender el flujo de datos
 
 | Fin de semana | Fase                                      | Contenido                                                                          | Demo                                           |
 | ------------- | ----------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------- |
-| 1             | A — Arquitectura + B — Fundaciones        | A3 repositorio, A4 multi-tenant, A5 modelo de datos, A6 contrato API, A7 pruebas. Monorepo, BD, API, web, app y CI mínimos | Web y app muestran "API en línea"   |
+| 1             | A — Arquitectura + B — Fundaciones        | A3 repositorio, A4 multi-tenant, A5 modelo de datos, A6 contrato API, A7 pruebas. Monorepo, BD, API, web, app y CI mínimos, con colores y tipografía del sistema de diseño | Web y app muestran "API en línea"   |
 | 2             | 1 — Acceso y marca · 2 — Garantías         | HU-18, HU-35 · HU-01                                                               | Dos tiendas con su marca; registrar una garantía |
 | 3             | 3 — Servicio técnico                      | HU-07, HU-02, HU-03, HU-05, HU-06                                                  | Garantía: registro → diagnóstico → finalizada  |
 | 4             | 4 — Portal del cliente (app + web)        | HU-16, HU-31, QR                                                                    | **MVP completo en local**                      |
@@ -137,7 +155,7 @@ Estado de la Fase A: A1 cerrada → [ADR-001](adr/ADR-001-estilo-de-arquitectura
 - Ecosistema de agentes MCP para orquestar las pruebas.
 - Historias fuera del MVP, implementadas con IA y con criterio.
 
-## 6. Costos a validar antes de usarlos
+## 7. Costos a validar antes de usarlos
 
 | Elemento                                | Costo                 | Decisión                                   |
 | --------------------------------------- | --------------------- | ------------------------------------------ |
