@@ -24,7 +24,7 @@ Plan para construir desde cero un MVP de Garanet en web y aplicación móvil, en
 | ----------------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | Web (backoffice)        | Personal tienda | HU-18 ingreso · HU-01 registrar garantía (cliente, producto y factura en el mismo formulario) · HU-07 · HU-02 · HU-03 · HU-05 · HU-06 |
 | App (Expo) + portal web | Cliente final   | HU-16 consultar mi garantía (código o QR) · HU-31 fecha de vencimiento                                                                |
-| Transversal             | —               | HU-35 versión mínima: logo y colores por tienda (tenant)                                                                              |
+| Transversal             | —               | HU-35 versión mínima: logo y colores por tienda (tenant) · web adaptativa en computador, tableta y celular (sección 5)                 |
 
 **Fuera del MVP:** HU-09, HU-12 y HU-13 (los reemplaza el seed sintético), reportes, notificaciones por correo y trazabilidad. Cualquier funcionalidad nueva entra después del MVP.
 
@@ -121,6 +121,24 @@ El diseño se aprobó antes del reinicio del proyecto y sigue vigente. No se red
 | Flujos                       | Flujos de usuario derivados solo de las historias                                                      | [Flujos](https://claude.ai/artifact/Kx4J6ZL9QminTGQ7R7pjJz)   |
 | Bocetos (wireframes)         | Pantallas web y app con paridad de navegación, íconos, nombres y orden                                 | [Bocetos](https://claude.ai/artifact/NxSF2tSaYKQGMiufLmYtCi)  |
 | Prototipo navegable          | Recorrido clicable construido con el sistema de diseño                                                 | [Prototipo](https://claude.ai/artifact/GcCJ6ff7o7MvetKqfPP4Jw) |
+
+### Web adaptativa (responsive)
+
+La web se usa desde el navegador del computador, la tableta y el celular, y se adapta según los diseños aprobados:
+
+| Dispositivo | Ancho de pantalla | Navegación                                                                     |
+| ----------- | ----------------- | ------------------------------------------------------------------------------ |
+| Computador  | ≥ 1024 px         | Barra lateral con texto y contadores de pendientes                             |
+| Tableta     | 640–1023 px       | NavRail: columna de 88 px con ícono, etiqueta, badges y "Salir" al pie         |
+| Celular     | < 640 px          | Mismo patrón que la app: barra superior y TabBar con 4 destinos + "Más"        |
+
+Reglas táctiles en tableta y celular:
+
+- Campos y botones de al menos 48 px de alto; texto de los campos de 16 px para que el navegador no haga zoom.
+- Las tablas se convierten en tarjetas por debajo de 560 px de ancho disponible.
+- La acción principal de cada formulario queda fija abajo y a todo el ancho, por encima del TabBar.
+
+Cada historia del MVP se considera terminada solo si funciona en los tres tamaños. En el Mes 2, las pruebas E2E web se ejecutan en los tres anchos.
 
 **Ajustes al alcance del MVP:**
 
