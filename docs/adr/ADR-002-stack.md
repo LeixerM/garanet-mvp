@@ -7,7 +7,7 @@
 
 ## Contexto
 
-El MVP debe construirse en 2 meses, en web y app con paridad de experiencia, para varias tiendas (multi-tenant), con herramientas de costo $0. El desarrollo es guiado con IA: Claude implementa y el responsable revisa cada PR y rastrea cómo viajan los datos de punta a punta. Después del MVP, el sistema es la base del ciclo QA (pruebas web, API, móvil, rendimiento y seguridad).
+El MVP debe construirse en 2 meses, en web y app con paridad de experiencia, para varias tiendas (multi-tenant), con herramientas de costo $0. El desarrollo sigue un modo tutorial (actualizado 2026-11-08): el responsable escribe cada paso a mano, Claude lo guía y revisa, y el responsable rastrea cómo viajan los datos de punta a punta. Después del MVP, el sistema es la base del ciclo QA (pruebas web, API, móvil, rendimiento y seguridad).
 
 Por eso el stack debe:
 

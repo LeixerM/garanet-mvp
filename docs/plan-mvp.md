@@ -1,8 +1,8 @@
 # Plan de trabajo: MVP de Garanet (web + app)
 
-Plan para construir desde cero un MVP de Garanet en web y aplicación móvil, en **2 meses trabajando los fines de semana**, simulando una empresa en la que el responsable asume todos los roles. El desarrollo es guiado con IA: Claude implementa y el responsable dirige, revisa y entiende.
+Plan para construir desde cero un MVP de Garanet en web y aplicación móvil, en **2 meses trabajando los fines de semana**, simulando una empresa en la que el responsable asume todos los roles. El desarrollo sigue un **modo tutorial**: el responsable escribe y ejecuta cada paso a mano, y Claude lo guía, explica y revisa.
 
-- Fecha: 2026-10-17 · actualizado 2026-10-25
+- Fecha: 2026-10-17 · actualizado 2026-11-08
 - Requerimientos: historias de usuario en Jira (proyecto SCRUM) y en `entregables/historias-usuario/` (fuera de este repositorio)
 - Decisiones: [ADR](adr/) · Aprendizajes: [aprendizajes.md](aprendizajes.md)
 - Referencia: el repositorio anterior `garanet/` queda **solo como consulta**. No se modifica ni se borra.
@@ -14,7 +14,7 @@ Plan para construir desde cero un MVP de Garanet en web y aplicación móvil, en
 | Prioridad 1 | Construir bien el MVP web + app y **entender cómo viajan los datos** entre frontend, API, backend y base de datos |
 | Prioridad 2 | Ciclo QA completo: pruebas automatizadas (web, API, móvil), rendimiento, seguridad y su CI                    |
 | Para qué    | Dar mantenimiento y soporte a los bugs que reporte el ciclo QA, y usar la IA con criterio para las funcionalidades futuras |
-| Horizonte   | 2 meses, solo fines de semana (≈ 80 h). fines de semana 1–5: MVP; 6–8: ciclo QA                                           |
+| Horizonte   | 2 meses, solo fines de semana (≈ 80 h). fines de semana 1–5: MVP; 6–8: ciclo QA. Estimación previa al modo tutorial: se recalcula al cerrar la Fase B |
 | Datos       | Solo sintéticos                                                                                               |
 | Costo       | $0                                                                                                            |
 
@@ -35,16 +35,29 @@ Plan para construir desde cero un MVP de Garanet en web y aplicación móvil, en
 | Rol             | Responsable                                                                         | Claude                                      |
 | --------------- | ----------------------------------------------------------------------------------- | ------------------------------------------- |
 | Product Owner   | Elige la historia de Jira y aprueba sus criterios *Given/When/Then*                 | Propone los criterios                       |
-| Tech Lead / Dev | Aprueba el plan, revisa el PR y hace el ejercicio **"seguí la petición"**           | Implementa y explica cada pieza brevemente  |
+| Tech Lead / Dev | Aprueba el plan, escribe el código, abre el PR y hace el ejercicio **"seguí la petición"** | Explica cada paso, guía y revisa lo escrito |
 | QA              | Plan de pruebas y automatización (etapa QA)                                            | Guía y revisa las pruebas                   |
-| DevOps          | Aprueba y entiende el pipeline de CI                                                | Lo arma y lo explica                        |
+| DevOps          | Arma, ejecuta y entiende el pipeline de CI                                          | Guía cada paso y lo revisa                  |
 
 ### Ciclo de cada historia
 
 ```
-Historia en Jira → criterios Given/When/Then → Claude implementa en un PR (con pruebas unitarias)
+Historia en Jira → criterios Given/When/Then → lección paso a paso: el responsable escribe, Claude guía → PR del responsable (con pruebas unitarias)
 → revisión + "seguí la petición" → explicación en aprendizajes.md → CI en verde → merge
 ```
+
+### Modo tutorial (cómo se construye)
+
+El MVP se construye como un tutorial guiado: **el responsable escribe y ejecuta todo a mano; Claude no implementa, enseña.** Aplica al código, la configuración, las migraciones, las pruebas y el CI.
+
+| Paso | Qué ocurre                                                                                     |
+| ---- | ---------------------------------------------------------------------------------------------- |
+| 1    | Claude explica el concepto y por qué se hace                                                   |
+| 2    | Claude entrega un paso pequeño: un comando o un archivo para transcribir                       |
+| 3    | El responsable predice el resultado, lo escribe y lo ejecuta en su máquina                     |
+| 4    | El responsable comparte el resultado y Claude revisa lo escrito                                |
+| 5    | Ante un error, Claude guía el diagnóstico antes de dar la solución                             |
+| 6    | El responsable hace el commit y abre el PR; Claude entrega el resumen de revisión              |
 
 ### Ejercicio "seguí la petición" (por historia)
 
